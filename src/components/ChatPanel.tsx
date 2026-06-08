@@ -15,7 +15,7 @@ export default function ChatPanel({ messages, appState }: ChatPanelProps) {
   }, [messages, appState]);
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 py-4 flex flex-col gap-4">
+    <div className="flex-1 overflow-y-auto px-5 py-5 flex flex-col gap-5">
       {messages.map((msg) => (
         <div
           key={msg.id}
@@ -25,10 +25,11 @@ export default function ChatPanel({ messages, appState }: ChatPanelProps) {
         >
           {msg.role === 'user' ? (
             <div
-              className="max-w-[85%] px-4 py-3 rounded-2xl rounded-tr-sm text-sm leading-relaxed"
+              className="max-w-[82%] px-4 py-3 rounded-2xl rounded-tr-sm text-sm leading-relaxed"
               style={{
                 backgroundColor: '#6c47ff',
                 color: '#fff',
+                boxShadow: '0 2px 12px rgba(108,71,255,0.25)',
               }}
             >
               {msg.content}
@@ -36,8 +37,8 @@ export default function ChatPanel({ messages, appState }: ChatPanelProps) {
           ) : (
             <div className="flex items-start gap-2.5 max-w-[92%]">
               <div
-                className="w-6 h-6 rounded-full shrink-0 mt-0.5 flex items-center justify-center text-xs"
-                style={{ backgroundColor: '#18181c', border: '1px solid #2e2e38', color: '#6c47ff' }}
+                className="w-6 h-6 rounded-full shrink-0 mt-0.5 flex items-center justify-center text-xs font-bold"
+                style={{ backgroundColor: 'rgba(108,71,255,0.15)', border: '1px solid rgba(108,71,255,0.3)', color: '#8b6bff' }}
               >
                 ✦
               </div>
@@ -62,8 +63,8 @@ export default function ChatPanel({ messages, appState }: ChatPanelProps) {
       {appState === 'generating' && (
         <div className="flex items-start gap-2.5 fade-in">
           <div
-            className="w-6 h-6 rounded-full shrink-0 flex items-center justify-center text-xs"
-            style={{ backgroundColor: '#18181c', border: '1px solid #2e2e38', color: '#6c47ff' }}
+            className="w-6 h-6 rounded-full shrink-0 flex items-center justify-center text-xs font-bold"
+            style={{ backgroundColor: 'rgba(108,71,255,0.15)', border: '1px solid rgba(108,71,255,0.3)', color: '#8b6bff' }}
           >
             ✦
           </div>

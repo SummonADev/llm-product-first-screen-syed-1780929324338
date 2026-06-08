@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
-import { Sparkles, ArrowUp, Zap, RefreshCw, Maximize2 } from 'lucide-react';
+import { ArrowUp, RefreshCw, Zap } from 'lucide-react';
 import clsx from 'clsx';
 import { AppState, Message } from '@/types';
 import ChatPanel from '@/components/ChatPanel';
@@ -50,13 +50,15 @@ export default function AfterPrompt({ messages, appState, credits, onFollowUp }:
     <div className="h-screen flex flex-col" style={{ backgroundColor: '#0f0f11' }}>
       {/* Slim top bar */}
       <header
-        className="flex items-center justify-between px-4 py-3 shrink-0"
+        className="flex items-center justify-between px-5 py-3 shrink-0"
         style={{ borderBottom: '1px solid #2e2e38', backgroundColor: '#0f0f11' }}
       >
         <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-md flex items-center justify-center" style={{ backgroundColor: '#6c47ff' }}>
-            <Sparkles size={12} className="text-white" />
-          </div>
+          <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
+            <rect width="28" height="28" rx="8" fill="#6c47ff"/>
+            <path d="M8 20 L14 8 L20 20" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M10.5 16h7" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
+          </svg>
           <span className="font-semibold text-sm" style={{ color: '#f2f2f5' }}>Lumina</span>
         </div>
 
@@ -83,46 +85,57 @@ export default function AfterPrompt({ messages, appState, credits, onFollowUp }:
 
       {/* Two-panel layout */}
       <div className="flex-1 flex overflow-hidden slide-left">
-        {/* LEFT: Chat history */}
+        {/* LEFT: Chat history + input */}
         <div
-          className="flex flex-col w-[38%] shrink-0"
+          className="flex flex-col w-[42%] shrink-0"
           style={{ borderRight: '1px solid #2e2e38' }}
         >
           <ChatPanel messages={messages} appState={appState} />
 
-          {/* Follow-up input pinned at bottom of chat panel */}
+          {/* Follow-up input pinned at bottom */}
           <div
-            className="shrink-0 p-3"
+            className="shrink-0 p-4"
             style={{ borderTop: '1px solid #2e2e38', backgroundColor: '#0f0f11' }}
           >
             <div
-              className="rounded-xl p-3"
-              style={{ backgroundColor: '#18181c', border: '1px solid #2e2e38' }}
+              className="rounded-2xl"
+              style={{
+                backgroundColor: '#18181c',
+                border: '1px solid #2e2e38',
+                boxShadow: '0 4px 24px rgba(108,71,255,0.07)',
+              }}
             >
-              <textarea
-                ref={textareaRef}
-                className="prompt-textarea text-sm"
-                rows={2}
-                placeholder="Refine or ask a follow-up…"
-                value={followUp}
-                onChange={handleInput}
-                onKeyDown={handleKeyDown}
-                disabled={appState === 'generating'}
-                style={{ minHeight: '48px', maxHeight: '120px' }}
-              />
-              <div className="flex justify-end mt-2">
+              <div className="px-4 pt-4 pb-2">
+                <textarea
+                  ref={textareaRef}
+                  className="prompt-textarea text-sm"
+                  rows={2}
+                  placeholder="Refine or ask a follow-up…"
+                  value={followUp}
+                  onChange={handleInput}
+                  onKeyDown={handleKeyDown}
+                  disabled={appState === 'generating'}
+                  style={{ minHeight: '48px', maxHeight: '120px' }}
+                />
+              </div>
+              <div
+                className="flex items-center justify-between px-3 py-2.5 rounded-b-2xl"
+                style={{ borderTop: '1px solid #23232e' }}
+              >
+                <span className="text-xs" style={{ color: '#5a5a6e' }}>Enter to send</span>
                 <button
                   onClick={handleSend}
                   disabled={!canSubmit}
                   className={clsx(
-                    'flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold transition-all duration-150',
+                    'flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-150',
                     canSubmit
                       ? 'text-white cursor-pointer hover:opacity-90 active:scale-95'
-                      : 'cursor-not-allowed opacity-40'
+                      : 'cursor-not-allowed opacity-30'
                   )}
                   style={{
                     backgroundColor: canSubmit ? '#6c47ff' : '#2e2e38',
                     color: canSubmit ? '#fff' : '#5a5a6e',
+                    boxShadow: canSubmit ? '0 0 12px rgba(108,71,255,0.3)' : 'none',
                   }}
                 >
                   <ArrowUp size={13} />
@@ -135,6 +148,7 @@ export default function AfterPrompt({ messages, appState, credits, onFollowUp }:
 
         {/* RIGHT: Preview */}
         <div className="flex-1 flex flex-col overflow-hidden">
+          {/* Preview top bar */}
           <div
             className="flex items-center justify-between px-4 py-2.5 shrink-0"
             style={{ borderBottom: '1px solid #2e2e38', backgroundColor: '#0f0f11' }}
@@ -145,12 +159,22 @@ export default function AfterPrompt({ messages, appState, credits, onFollowUp }:
               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#28c840' }} />
               <span className="ml-3 text-xs" style={{ color: '#5a5a6e' }}>Preview</span>
             </div>
-            <button
-              className="p-1.5 rounded-md transition-opacity hover:opacity-70"
-              style={{ color: '#5a5a6e' }}
-            >
-              <Maximize2 size={13} />
-            </button>
+            {appState === 'done' && (
+              <span
+                className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
+                style={{
+                  backgroundColor: 'rgba(40,200,64,0.08)',
+                  color: '#28c840',
+                  border: '1px solid rgba(40,200,64,0.18)',
+                }}
+              >
+                <span
+                  className="inline-block w-1.5 h-1.5 rounded-full"
+                  style={{ backgroundColor: '#28c840' }}
+                />
+                Ready
+              </span>
+            )}
           </div>
           <PreviewPanel appState={appState} messages={messages} />
         </div>
