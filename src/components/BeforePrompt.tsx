@@ -43,17 +43,16 @@ export default function BeforePrompt({ onSubmit }: BeforePromptProps) {
   const canSubmit = prompt.trim().length > 0;
 
   return (
-    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#0f0f11' }}>
-      {/* Minimal top bar — logo only */}
+    <div className="min-h-screen flex flex-col" style={{ backgroundColor: '#0d1117' }}>
+      {/* Minimal top bar */}
       <header className="flex items-center px-6 py-4">
         <div className="flex items-center gap-2">
-          {/* Logo mark */}
           <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-            <rect width="28" height="28" rx="8" fill="#6c47ff"/>
+            <rect width="28" height="28" rx="8" fill="#1a56db"/>
             <path d="M8 20 L14 8 L20 20" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M10.5 16h7" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
           </svg>
-          <span className="font-semibold text-sm tracking-tight" style={{ color: '#f2f2f5' }}>Lumina</span>
+          <span className="font-semibold text-sm tracking-tight" style={{ color: '#e6edf3' }}>Lumina</span>
         </div>
       </header>
 
@@ -66,7 +65,7 @@ export default function BeforePrompt({ onSubmit }: BeforePromptProps) {
             width: 520,
             height: 320,
             borderRadius: '50%',
-            background: 'radial-gradient(ellipse, rgba(108,71,255,0.13) 0%, transparent 70%)',
+            background: 'radial-gradient(ellipse, rgba(26,86,219,0.11) 0%, transparent 70%)',
             top: '30%',
             left: '50%',
             transform: 'translate(-50%, -50%)',
@@ -76,10 +75,10 @@ export default function BeforePrompt({ onSubmit }: BeforePromptProps) {
 
         {/* Headline */}
         <div className="text-center mb-10 fade-in" style={{ position: 'relative', zIndex: 1 }}>
-          <h1 className="font-bold mb-3 leading-tight" style={{ color: '#f2f2f5', fontSize: '2.6rem', letterSpacing: '-0.02em' }}>
+          <h1 className="font-bold mb-3 leading-tight" style={{ color: '#e6edf3', fontSize: '2.6rem', letterSpacing: '-0.02em' }}>
             What do you want to build?
           </h1>
-          <p className="text-base" style={{ color: '#9191a4' }}>
+          <p className="text-base" style={{ color: '#8b949e' }}>
             Describe your idea and watch it come to life instantly.
           </p>
         </div>
@@ -88,9 +87,9 @@ export default function BeforePrompt({ onSubmit }: BeforePromptProps) {
         <div
           className="w-full max-w-2xl rounded-2xl fade-in"
           style={{
-            backgroundColor: '#18181c',
-            border: '1px solid #2e2e38',
-            boxShadow: '0 0 0 1px transparent, 0 8px 48px rgba(108,71,255,0.12)',
+            backgroundColor: '#161b22',
+            border: '1px solid #30363d',
+            boxShadow: '0 0 0 1px transparent, 0 8px 48px rgba(26,86,219,0.10)',
             position: 'relative',
             zIndex: 1,
           }}
@@ -111,9 +110,9 @@ export default function BeforePrompt({ onSubmit }: BeforePromptProps) {
 
           <div
             className="flex items-center justify-between px-4 py-3 rounded-b-2xl"
-            style={{ borderTop: '1px solid #23232e' }}
+            style={{ borderTop: '1px solid #21262d' }}
           >
-            <span className="text-xs" style={{ color: '#5a5a6e' }}>Shift + Enter for new line</span>
+            <span className="text-xs" style={{ color: '#484f58' }}>Shift + Enter for new line</span>
             <button
               onClick={() => canSubmit && onSubmit(prompt)}
               disabled={!canSubmit}
@@ -124,9 +123,9 @@ export default function BeforePrompt({ onSubmit }: BeforePromptProps) {
                   : 'cursor-not-allowed opacity-30'
               )}
               style={{
-                backgroundColor: canSubmit ? '#6c47ff' : '#2e2e38',
-                color: canSubmit ? '#fff' : '#5a5a6e',
-                boxShadow: canSubmit ? '0 0 16px rgba(108,71,255,0.35)' : 'none',
+                backgroundColor: canSubmit ? '#1a56db' : '#21262d',
+                color: canSubmit ? '#fff' : '#484f58',
+                boxShadow: canSubmit ? '0 0 16px rgba(26,86,219,0.3)' : 'none',
               }}
             >
               <ArrowUp size={15} />
@@ -143,9 +142,9 @@ export default function BeforePrompt({ onSubmit }: BeforePromptProps) {
               onClick={() => handleSuggestion(s.text)}
               className="flex items-center gap-2 px-3.5 py-2 rounded-full text-sm transition-all duration-150 hover:opacity-80 active:scale-95"
               style={{
-                backgroundColor: '#18181c',
-                color: '#9191a4',
-                border: '1px solid #2e2e38',
+                backgroundColor: '#161b22',
+                color: '#8b949e',
+                border: '1px solid #30363d',
               }}
             >
               <span>{s.icon}</span>

@@ -27,9 +27,9 @@ export default function ChatPanel({ messages, appState }: ChatPanelProps) {
             <div
               className="max-w-[82%] px-4 py-3 rounded-2xl rounded-tr-sm text-sm leading-relaxed"
               style={{
-                backgroundColor: '#6c47ff',
+                backgroundColor: '#1a56db',
                 color: '#fff',
-                boxShadow: '0 2px 12px rgba(108,71,255,0.25)',
+                boxShadow: '0 2px 12px rgba(26,86,219,0.25)',
               }}
             >
               {msg.content}
@@ -38,23 +38,23 @@ export default function ChatPanel({ messages, appState }: ChatPanelProps) {
             <div className="flex items-start gap-2.5 max-w-[92%]">
               <div
                 className="w-6 h-6 rounded-full shrink-0 mt-0.5 flex items-center justify-center text-xs font-bold"
-                style={{ backgroundColor: 'rgba(108,71,255,0.15)', border: '1px solid rgba(108,71,255,0.3)', color: '#8b6bff' }}
+                style={{ backgroundColor: 'rgba(26,86,219,0.15)', border: '1px solid rgba(26,86,219,0.3)', color: '#3b71f5' }}
               >
                 ✦
               </div>
               <div
                 className="px-4 py-3 rounded-2xl rounded-tl-sm text-sm leading-relaxed"
                 style={{
-                  backgroundColor: '#18181c',
-                  border: '1px solid #2e2e38',
-                  color: '#f2f2f5',
+                  backgroundColor: '#161b22',
+                  border: '1px solid #30363d',
+                  color: '#e6edf3',
                 }}
               >
                 {msg.content}
               </div>
             </div>
           )}
-          <span className="text-xs px-1" style={{ color: '#5a5a6e' }}>
+          <span className="text-xs px-1" style={{ color: '#484f58' }}>
             {msg.timestamp.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
           </span>
         </div>
@@ -64,13 +64,13 @@ export default function ChatPanel({ messages, appState }: ChatPanelProps) {
         <div className="flex items-start gap-2.5 fade-in">
           <div
             className="w-6 h-6 rounded-full shrink-0 flex items-center justify-center text-xs font-bold"
-            style={{ backgroundColor: 'rgba(108,71,255,0.15)', border: '1px solid rgba(108,71,255,0.3)', color: '#8b6bff' }}
+            style={{ backgroundColor: 'rgba(26,86,219,0.15)', border: '1px solid rgba(26,86,219,0.3)', color: '#3b71f5' }}
           >
             ✦
           </div>
           <div
             className="px-4 py-3 rounded-2xl rounded-tl-sm"
-            style={{ backgroundColor: '#18181c', border: '1px solid #2e2e38' }}
+            style={{ backgroundColor: '#161b22', border: '1px solid #30363d' }}
           >
             <TypingIndicator />
           </div>

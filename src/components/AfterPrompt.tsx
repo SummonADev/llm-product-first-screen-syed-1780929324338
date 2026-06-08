@@ -47,35 +47,35 @@ export default function AfterPrompt({ messages, appState, credits, onFollowUp }:
   const canSubmit = followUp.trim().length > 0 && appState !== 'generating';
 
   return (
-    <div className="h-screen flex flex-col" style={{ backgroundColor: '#0f0f11' }}>
+    <div className="h-screen flex flex-col" style={{ backgroundColor: '#0d1117' }}>
       {/* Slim top bar */}
       <header
         className="flex items-center justify-between px-5 py-3 shrink-0"
-        style={{ borderBottom: '1px solid #2e2e38', backgroundColor: '#0f0f11' }}
+        style={{ borderBottom: '1px solid #21262d', backgroundColor: '#0d1117' }}
       >
         <div className="flex items-center gap-2">
           <svg width="24" height="24" viewBox="0 0 28 28" fill="none">
-            <rect width="28" height="28" rx="8" fill="#6c47ff"/>
+            <rect width="28" height="28" rx="8" fill="#1a56db"/>
             <path d="M8 20 L14 8 L20 20" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M10.5 16h7" stroke="white" strokeWidth="2.2" strokeLinecap="round"/>
           </svg>
-          <span className="font-semibold text-sm" style={{ color: '#f2f2f5' }}>Lumina</span>
+          <span className="font-semibold text-sm" style={{ color: '#e6edf3' }}>Lumina</span>
         </div>
 
         <div className="flex items-center gap-3">
           {/* Credits badge */}
           <div
             className="flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium"
-            style={{ backgroundColor: '#18181c', border: '1px solid #2e2e38' }}
+            style={{ backgroundColor: '#161b22', border: '1px solid #30363d' }}
           >
-            <Zap size={11} style={{ color: '#6c47ff' }} />
-            <span style={{ color: '#f2f2f5' }}>{credits}</span>
-            <span style={{ color: '#9191a4' }}>credits</span>
+            <Zap size={11} style={{ color: '#1a56db' }} />
+            <span style={{ color: '#e6edf3' }}>{credits}</span>
+            <span style={{ color: '#8b949e' }}>credits</span>
           </div>
 
           <button
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-opacity hover:opacity-80"
-            style={{ backgroundColor: '#18181c', color: '#9191a4', border: '1px solid #2e2e38' }}
+            style={{ backgroundColor: '#161b22', color: '#8b949e', border: '1px solid #30363d' }}
           >
             <RefreshCw size={12} />
             New chat
@@ -88,21 +88,21 @@ export default function AfterPrompt({ messages, appState, credits, onFollowUp }:
         {/* LEFT: Chat history + input */}
         <div
           className="flex flex-col w-[42%] shrink-0"
-          style={{ borderRight: '1px solid #2e2e38' }}
+          style={{ borderRight: '1px solid #21262d' }}
         >
           <ChatPanel messages={messages} appState={appState} />
 
           {/* Follow-up input pinned at bottom */}
           <div
             className="shrink-0 p-4"
-            style={{ borderTop: '1px solid #2e2e38', backgroundColor: '#0f0f11' }}
+            style={{ borderTop: '1px solid #21262d', backgroundColor: '#0d1117' }}
           >
             <div
               className="rounded-2xl"
               style={{
-                backgroundColor: '#18181c',
-                border: '1px solid #2e2e38',
-                boxShadow: '0 4px 24px rgba(108,71,255,0.07)',
+                backgroundColor: '#161b22',
+                border: '1px solid #30363d',
+                boxShadow: '0 4px 24px rgba(26,86,219,0.06)',
               }}
             >
               <div className="px-4 pt-4 pb-2">
@@ -120,9 +120,9 @@ export default function AfterPrompt({ messages, appState, credits, onFollowUp }:
               </div>
               <div
                 className="flex items-center justify-between px-3 py-2.5 rounded-b-2xl"
-                style={{ borderTop: '1px solid #23232e' }}
+                style={{ borderTop: '1px solid #21262d' }}
               >
-                <span className="text-xs" style={{ color: '#5a5a6e' }}>Enter to send</span>
+                <span className="text-xs" style={{ color: '#484f58' }}>Enter to send</span>
                 <button
                   onClick={handleSend}
                   disabled={!canSubmit}
@@ -133,9 +133,9 @@ export default function AfterPrompt({ messages, appState, credits, onFollowUp }:
                       : 'cursor-not-allowed opacity-30'
                   )}
                   style={{
-                    backgroundColor: canSubmit ? '#6c47ff' : '#2e2e38',
-                    color: canSubmit ? '#fff' : '#5a5a6e',
-                    boxShadow: canSubmit ? '0 0 12px rgba(108,71,255,0.3)' : 'none',
+                    backgroundColor: canSubmit ? '#1a56db' : '#21262d',
+                    color: canSubmit ? '#fff' : '#484f58',
+                    boxShadow: canSubmit ? '0 0 12px rgba(26,86,219,0.28)' : 'none',
                   }}
                 >
                   <ArrowUp size={13} />
@@ -151,13 +151,13 @@ export default function AfterPrompt({ messages, appState, credits, onFollowUp }:
           {/* Preview top bar */}
           <div
             className="flex items-center justify-between px-4 py-2.5 shrink-0"
-            style={{ borderBottom: '1px solid #2e2e38', backgroundColor: '#0f0f11' }}
+            style={{ borderBottom: '1px solid #21262d', backgroundColor: '#0d1117' }}
           >
             <div className="flex items-center gap-2">
               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#ff5f57' }} />
               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#febc2e' }} />
               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: '#28c840' }} />
-              <span className="ml-3 text-xs" style={{ color: '#5a5a6e' }}>Preview</span>
+              <span className="ml-3 text-xs" style={{ color: '#484f58' }}>Preview</span>
             </div>
             {appState === 'done' && (
               <span
